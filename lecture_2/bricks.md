@@ -123,14 +123,14 @@ f(x) = y
 
 ---
 
-#### Simple F# example
+## Simple F# example
     let add x y = x + y
     let add2 = add 2
     let result = add2 3 // returns 5
 
 ---
 
-### Simple JS example 
+## Simple JS example 
     function add(x) {
         return function(y) {
             return x + y;
@@ -139,7 +139,7 @@ f(x) = y
 
 ---
 
-### More functional way
+## More functional way
     const add = x => y => x + y;
     const add2 = add(2);
     const result = add2(3); // returns 5
@@ -150,7 +150,7 @@ f(x) = y
 
 ---
 
-### Back to the issue
+## Back to the issue
     const logInDb = db => users => each(db.log, user); // curried function
 
     const youngest = pipe(
@@ -162,14 +162,14 @@ f(x) = y
 
 ---
 
-### How to curry
+## How to curry
     const add = (x, y) => x + y;
     const add2 = add(2);
     const result = add2(3); // NaN is not a function
 
 ---
 
-### Implementation
+## Implementation
     const curry f => a => b => f(a, b);
 
     const add = (x, y) => x + y;
@@ -196,7 +196,7 @@ f(x) = y
 
 ---
 
-### Example
+## Example
     const getUpdateCommand = (db, file, http) => userId => {
         // get user from db
         // save in file
