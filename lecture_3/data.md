@@ -4,9 +4,13 @@
 
 ---
 
-# Lecture 4 - QA session
+# Lecture 3 - DATA
 
 ---
 
 Agenda:
-1. Recursion
+1. Immutability
+2. Immutable.js
+3. Monads
+4. monet.js
+5. QA
