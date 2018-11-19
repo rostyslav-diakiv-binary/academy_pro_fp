@@ -207,6 +207,10 @@ f(x) = y
 
 ---
 
+![](http://www.pivotactivation.ca/wp-content/uploads/2015/08/blog2.png)
+
+---
+
 # lodash/fp
 
 - flow
@@ -219,6 +223,8 @@ f(x) = y
 - curry
 
 [Documentation](https://gist.github.com/jfmengels/6b973b69c491375117dc)
+
+[(Ramda docs)](https://ramdajs.com/docs/)
 
 ---
 
