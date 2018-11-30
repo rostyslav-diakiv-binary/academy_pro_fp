@@ -14,7 +14,7 @@ Agenda:
 3. Immutable.js
 4. Monads
 5. monet.js
-6. Use cases
+6. Summary
 7. QA
 
 ---
