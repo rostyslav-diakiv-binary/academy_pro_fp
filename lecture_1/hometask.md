@@ -2,7 +2,7 @@
 ## Solve the task using pure functions, immutable objects and function composition (it would be better if you use point free functions).
 
 > You have a list of orders { name, price, date }. You have to write a public function that transform the list to matrix grouped by date. (you can write as much private functions as you need).
-> - Names should be in upper case.
+> - Names should be capitalized.
 > - Price should be extended with $ prefix
 > - If the row has invalid data (empty name, date or price) store it in the separate collection
 >
@@ -24,7 +24,7 @@
 
 `{ name: 'table', price: 150, date: '2018-12-10' },`
 
-`{ name: 'Sofa', price: 400, date: '2018-12-08' },`
+`{ name: 'Sofa', price: 400, date: '2018-12-10' },`
 
 `{ name: 'chair', date: '2018-09-10' },`
 
@@ -32,9 +32,10 @@
 
 ## Output
 
- | 2018-03-03 | 2018-05-05 | 2018-09-05 | 2018-10-10 | 2018-10-12 | 2018-12-08 | 2018-12-10 | 2018-12-11 |
- | --- | --- | --- | --- | --- | --- | --- | --- |
- | Camera - $500 | Window - $300 | PC - $800 | TV - $300 | Laptop - $600 | Sofa - $400 | Table - $150 | Fridge - $1000 |
+ | 2018-03-03 | 2018-05-05 | 2018-09-05 | 2018-10-10 | 2018-10-12 | 2018-12-10 | 2018-12-11 |
+ | --- | --- | --- | --- | --- | --- | --- |
+ | Camera - $500 | Window - $300 | PC - $800 | TV - $300 | Laptop - $600 | Table - $150 | Fridge - $1000 |
+  |  |  |  |  |  | Sofa - $150 | |
 
 ### Incorrect rows
 
