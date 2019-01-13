@@ -100,6 +100,27 @@ export const groupByWithProps = (
   return acc;
 };
 
+export const groupByWithPropsTyped = <T extends IKeyValue>(
+  groupByProp: keyof T,
+  groupItemProps: (keyof T)[]
+) => (acc: { [key: string]: Partial<T>[] }, i: T) => {
+  const groupByPropValue: string = i[groupByProp];
+  if (!groupByPropValue) {
+    return acc;
+  }
+  const group = acc[groupByPropValue];
+  if (!group) {
+    Object.defineProperty(acc, groupByPropValue, {
+      enumerable: true,
+      value: [pickProperties(groupItemProps)(i)]
+    });
+  } else {
+    group.push(pickProperties(groupItemProps)(i));
+  }
+
+  return acc;
+}; 
+
 // ================================== unused
 // .reduce((acc: { [key: string]: Partial<typeof i>[] }, i: DateOrder) => {
 //   if (!i.date) {

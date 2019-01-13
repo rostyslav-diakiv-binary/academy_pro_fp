@@ -7,7 +7,7 @@ import {
   capitalizeProperty,
   addDollarSignToProperty,
   byDate,
-  groupByWithProps
+  groupByWithPropsTyped
 } from "./functions";
 
 class App extends Component {
@@ -21,7 +21,7 @@ class App extends Component {
       .map(capitalizeProperty("name"))
       .map(addDollarSignToProperty("price"))
       .sort(byDate("date"))
-      .reduce(groupByWithProps("date", ["name", "price"]), {});
+      .reduce(groupByWithPropsTyped("date", ["name", "price"]), {});
 
     return (
       <div className="App">
