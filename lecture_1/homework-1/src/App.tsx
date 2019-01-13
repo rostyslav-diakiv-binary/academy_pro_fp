@@ -7,7 +7,10 @@ import {
   capitalizeProperty,
   addDollarSignToProperty,
   byDate,
-  groupByWithPropsTyped
+  groupByWithPropsTyped,
+  sumRecursively,
+  multiplyRecursively,
+  groupBy
 } from "./functions";
 
 class App extends Component {
@@ -22,6 +25,22 @@ class App extends Component {
       .map(addDollarSignToProperty("price"))
       .sort(byDate("date"))
       .reduce(groupByWithPropsTyped("date", ["name", "price"]), {});
+
+    const resultMatrix2 = validOrders
+      .map(capitalizeProperty("name"))
+      .map(addDollarSignToProperty("price"))
+      .sort(byDate("date"));
+
+    const resultMatrix3 = groupBy(resultMatrix2, "date");
+    for (let k in resultMatrix3) {
+      resultMatrix3[k].forEach((element: DateOrder) => {
+        delete element.date;
+      });
+    }
+    console.log(resultMatrix3);
+
+    console.log(sumRecursively(1, 2, 4, 6, 8, 9, 0));
+    console.log(multiplyRecursively(1, 2, 3, 4, 5, 6));
 
     return (
       <div className="App">

@@ -57,7 +57,7 @@ export const addDollarSignToProperty = <T extends IKeyValue>(
 export const date_sort = (
   date1: Date | string | undefined,
   date2: Date | string | undefined,
-  ascending: boolean = true
+  descending?: boolean
 ) => {
   if (!date1) return -1;
   if (!date2) return 1;
@@ -69,8 +69,8 @@ export const date_sort = (
     date2 = new Date(date2);
   }
 
-  if (date1 > date2) return ascending ? 1 : -1;
-  if (date1 < date2) return ascending ? -1 : 1;
+  if (date1 > date2) return !descending ? 1 : -1;
+  if (date1 < date2) return !descending ? -1 : 1;
   return 0;
 };
 
@@ -91,7 +91,9 @@ export const groupByWithProps = (
   if (!group) {
     Object.defineProperty(acc, groupByPropValue, {
       enumerable: true,
-      value: [pickProperties(groupItemProps)(i)]
+      // value: [groupItemProps.reduce((acc: IKeyValue, propName: string) => {
+      //     acc[propName] = i[propName];
+      // }, {})]
     });
   } else {
     group.push(pickProperties(groupItemProps)(i));
@@ -112,14 +114,40 @@ export const groupByWithPropsTyped = <T extends IKeyValue>(
   if (!group) {
     Object.defineProperty(acc, groupByPropValue, {
       enumerable: true,
-      value: [pickProperties(groupItemProps)(i)]
+      value: [groupItemProps.reduce((acc: { [K in keyof T]: T}, propName: keyof T) => {
+        acc[propName] = i[propName];
+        return acc;
+    }, {} as any)]
     });
   } else {
     group.push(pickProperties(groupItemProps)(i));
   }
 
   return acc;
-}; 
+};
+
+export const compose = (funcs: Function[]) => (arg: any) =>
+  funcs.reduce((a, b) => (arg: any) => b(a(arg)), (i: any) => i);
+
+export const sumRecursively = (...args: number[]): number => {
+  if (args.length <= 2) {
+    return args[0] + args[1];
+  }
+
+  return args[0] + sumRecursively(...args.slice(1));
+};
+
+export const multiplyRecursively = (...args: number[]): number => {
+  if (args.length <= 2) {
+    console.log(`${args[0]} * ${args[1]}`);
+    return args[0] * args[1];
+  }
+
+  console.log(`${args[0]} * multiplyRecursively`);
+  const intermediateResult = args[0] * multiplyRecursively(...args.slice(1));
+  console.log(`${intermediateResult}  --  ${args[0]}`);
+  return intermediateResult;
+};
 
 // ================================== unused
 // .reduce((acc: { [key: string]: Partial<typeof i>[] }, i: DateOrder) => {
